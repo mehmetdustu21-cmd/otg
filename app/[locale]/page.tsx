@@ -79,7 +79,7 @@ export default async function LocalizedHome({ params }: PageProps) {
         logo: `${origin}/images/orchard-mark.png`,
         founder: [
           { "@type": "Person", name: "Ziya Teleti" },
-          { "@type": "Person", name: "Muhammed Mehmet DÃ¼ÅŸtu" }
+          { "@type": "Person", name: "Muhammed Mehmet Düştu" }
         ],
         email: contact.contact_email,
         areaServed: targetMarkets.map((name) => ({ "@type": "Country", name })),

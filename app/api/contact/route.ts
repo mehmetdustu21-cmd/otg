@@ -14,16 +14,16 @@ function cleanText(value: unknown, limit: number): string {
 export async function POST(request: NextRequest) {
   const limit = rateLimit(`contact:${requestAddress(request)}`, 5, 60 * 60_000);
   if (!limit.allowed) {
-    return NextResponse.json({ error: "Ã‡ok fazla form gÃ¶nderildi. LÃ¼tfen daha sonra tekrar deneyin." }, { status: 429, headers: { ...privateHeaders, "Retry-After": String(limit.retryAfter) } });
+    return NextResponse.json({ error: "Çok fazla form gönderildi. Lütfen daha sonra tekrar deneyin." }, { status: 429, headers: { ...privateHeaders, "Retry-After": String(limit.retryAfter) } });
   }
   const declaredLength = Number(request.headers.get("content-length") || 0);
   if (declaredLength > 20_000) {
-    return NextResponse.json({ error: "Form verisi Ã§ok bÃ¼yÃ¼k." }, { status: 413, headers: privateHeaders });
+    return NextResponse.json({ error: "Form verisi çok büyük." }, { status: 413, headers: privateHeaders });
   }
 
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
   if (!body) {
-    return NextResponse.json({ error: "Form verisi okunamadÄ±." }, { status: 400, headers: privateHeaders });
+    return NextResponse.json({ error: "Form verisi okunamadı." }, { status: 400, headers: privateHeaders });
   }
 
   // Quietly accept bot honeypot submissions without storing them.
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
   if (fullName.length < 2 || !emailPattern.test(email) || country.length < 2 || message.length < 8) {
     return NextResponse.json(
-      { error: "LÃ¼tfen zorunlu alanlarÄ± kontrol edin ve geÃ§erli bir e-posta adresi girin." },
+      { error: "Lütfen zorunlu alanları kontrol edin ve geçerli bir e-posta adresi girin." },
       { status: 400, headers: privateHeaders }
     );
   }
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true }, { status: 201, headers: privateHeaders });
   } catch {
     return NextResponse.json(
-      { error: "Talebiniz ÅŸu anda kaydedilemedi. LÃ¼tfen doÄŸrudan e-posta veya telefonla iletiÅŸime geÃ§in." },
+      { error: "Talebiniz şu anda kaydedilemedi. Lütfen doğrudan e-posta veya telefonla iletişime geçin." },
       { status: 503, headers: privateHeaders }
     );
   }

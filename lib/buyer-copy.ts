@@ -104,14 +104,14 @@ export const buyerCopy: Record<Locale, BuyerCopy> = {
   },
   fr: {
     sectionLabel: "Pour les acheteurs professionnels",
-    sectionTitle: "De la question produit à une discussion d’approvisionnement claire.",
+    sectionTitle: "De la question produit à une discussion d'approvisionnement claire.",
     sectionIntro: "Nous travaillons avec des importateurs, distributeurs, détaillants et entreprises alimentaires à la recherche de figues séchées de Türkiye. Indiquez-nous votre besoin : les détails actuels, la disponibilité, le conditionnement et les documents applicables sont confirmés directement.",
     supplyCards: [
-      { title: "Approvisionnement en vrac", text: "Discutez d’une fourniture en vrac pour l’importation, la distribution ou la production alimentaire. Les formats et la disponibilité sont confirmés pour chaque demande." },
+      { title: "Approvisionnement en vrac", text: "Discutez d'une fourniture en vrac pour l'importation, la distribution ou la production alimentaire. Les formats et la disponibilité sont confirmés pour chaque demande." },
       { title: "Conditionnement", text: "Demandez des options conditionnées ou prêtes pour la vente. Les détails sont confirmés selon votre brief." },
-      { title: "Commencer par un échantillon", text: "Demandez à discuter d’un échantillon avant une commande. Nous vous indiquons les informations utiles à fournir." }
+      { title: "Commencer par un échantillon", text: "Demandez à discuter d'un échantillon avant une commande. Nous vous indiquons les informations utiles à fournir." }
     ],
-    processLabel: "Le parcours d’une demande",
+    processLabel: "Le parcours d'une demande",
     processTitle: "Un échange B2B pratique, sans parcours de commande imposé.",
     processSteps: [
       { title: "1. Décrire le besoin", text: "Indiquez votre marché, le produit recherché, le conditionnement et le volume approximatif." },
@@ -129,7 +129,7 @@ export const buyerCopy: Record<Locale, BuyerCopy> = {
     buyerTypeLabel: "Je suis",
     buyerTypeOptions: ["Importateur", "Distributeur / grossiste", "Détaillant", "Fabricant alimentaire", "Autre acheteur professionnel"],
     productInterestLabel: "Produit recherché",
-    productOptions: ["Figues séchées entières", "Approvisionnement en vrac", "Produit conditionné", "Demande d’échantillon", "Je ne sais pas encore"],
+    productOptions: ["Figues séchées entières", "Approvisionnement en vrac", "Produit conditionné", "Demande d'échantillon", "Je ne sais pas encore"],
     volumeLabel: "Volume estimé",
     volumeOptions: ["Je compare les options", "Petite commande test", "Approvisionnement régulier", "Besoin de gros volume", "À discuter"],
     packagingLabel: "Préférence de conditionnement",
@@ -148,7 +148,7 @@ export const buyerCopy: Record<Locale, BuyerCopy> = {
       { title: "Prima il campione", text: "Richiedi una conversazione sul campione prima di ordinare. Ti indicheremo le informazioni utili per la valutazione." }
     ],
     processLabel: "Come funziona la richiesta",
-    processTitle: "Un confronto B2B pratico, senza un percorso d’ordine fisso.",
+    processTitle: "Un confronto B2B pratico, senza un percorso d'ordine fisso.",
     processSteps: [
       { title: "1. Condividi il brief", text: "Indica mercato, prodotto di interesse, confezionamento e volume approssimativo." },
       { title: "2. Verifichiamo i dettagli", text: "Confermiamo le informazioni di prodotto e fornitura pertinenti alla richiesta." },
@@ -192,7 +192,7 @@ export const buyerCopy: Record<Locale, BuyerCopy> = {
     ],
     marketLabel: "Europa · VS · Zwitserland",
     marketTitle: "Voor inkopers die rechtstreeks met een leverancier willen spreken.",
-    marketText: "Onze pagina’s zijn beschikbaar in het Engels, Duits, Frans, Italiaans en Nederlands. Gebruik het formulier of neem rechtstreeks contact op voor een offerte of sample. We publiceren geen onbevestigde certificaten, prijzen of leveringsbeloften.",
+    marketText: "Onze pagina's zijn beschikbaar in het Engels, Duits, Frans, Italiaans en Nederlands. Gebruik het formulier of neem rechtstreeks contact op voor een offerte of sample. We publiceren geen onbevestigde certificaten, prijzen of leveringsbeloften.",
     quoteCta: "Offerte aanvragen",
     sampleCta: "Sample aanvragen",
     whatsappCta: "Bericht via WhatsApp",

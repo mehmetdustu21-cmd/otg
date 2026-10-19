@@ -42,33 +42,33 @@ export const copy = {
     h1: "Figues séchées de Türkiye pour les acheteurs professionnels",
     subheading: "Sans minimum de commande. Discutons du vrac ou du conditionnement souhaité.",
     productIntro: "Nous fournissons des figues séchées de Türkiye aux acheteurs professionnels. Contactez-nous pour connaître les détails et disponibilités actuels.",
-    documentationCopy: "Les informations et documents relatifs à la qualité et à la conformité à l’exportation peuvent être discutés ou communiqués sur demande, sous réserve de confirmer ceux qui s’appliquent.",
+    documentationCopy: "Les informations et documents relatifs à la qualité et à la conformité à l'exportation peuvent être discutés ou communiqués sur demande, sous réserve de confirmer ceux qui s'appliquent.",
     sampleCta: "Demander un échantillon",
    
-    formTitle: "Parlez-nous de votre projet d’approvisionnement", nameLabel: "Nom", phoneLabel: "Téléphone", emailLabel: "E-mail", companyOptionalLabel: "Entreprise (facultatif)", countryLabel: "Pays", messageLabel: "Votre message", submitLabel: "Envoyer la demande",
+    formTitle: "Parlez-nous de votre projet d'approvisionnement", nameLabel: "Nom", phoneLabel: "Téléphone", emailLabel: "E-mail", companyOptionalLabel: "Entreprise (facultatif)", countryLabel: "Pays", messageLabel: "Votre message", submitLabel: "Envoyer la demande",
     privacyNotice: "Le formulaire recueille votre nom complet, votre numéro de téléphone, votre adresse e-mail, votre pays, votre message, votre adresse IP et des informations sur votre navigateur, ainsi que le nom de votre entreprise si vous le renseignez. Ces données sont utilisées uniquement pour répondre à votre demande et en assurer le suivi, conservées au maximum 60 mois, puis supprimées.",
     successMessage: "Merci pour votre demande. Nous vous répondrons au sujet de votre besoin.",
     seoKeywords: ["figues séchées en gros", "fournisseur de figues séchées", "figues séchées de Turquie", "achat de figues séchées en vrac", "figues séchées conditionnées", "grossiste en figues séchées"],
     navSupply: "Approvisionnement", navDocs: "Documentation", navContact: "Contact", navAbout: "À propos", menuLabel: "Menu", navCta: "Demander des détails",
-    eyebrow: "Türkiye · Figues séchées en gros", supplyTitle: "Approvisionnement en figues séchées en gros", docsTitle: "Vérifions les documents applicables à votre commande.", docsLabel: "Qualité et documents d’exportation", formIntro: "Indiquez-nous ce que recherche votre entreprise. Les informations à jour et les demandes d’échantillons sont traitées directement avec notre équipe.", contactSection: "Parlons de votre besoin", locationsLabel: "Nos points de contact", countryOptions: ["États-Unis", "Suisse", "Allemagne", "Pays-Bas", "Italie", "France", "Autre"]
+    eyebrow: "Türkiye · Figues séchées en gros", supplyTitle: "Approvisionnement en figues séchées en gros", docsTitle: "Vérifions les documents applicables à votre commande.", docsLabel: "Qualité et documents d'exportation", formIntro: "Indiquez-nous ce que recherche votre entreprise. Les informations à jour et les demandes d'échantillons sont traitées directement avec notre équipe.", contactSection: "Parlons de votre besoin", locationsLabel: "Nos points de contact", countryOptions: ["États-Unis", "Suisse", "Allemagne", "Pays-Bas", "Italie", "France", "Autre"]
   },
   it: {
     locale: "it", market: "Italia e Svizzera italofona",
-    title: "Fichi secchi all’ingrosso",
-    description: "Fichi secchi dalla Türkiye per il commercio all’ingrosso. Nessun ordine minimo; forniture sfuse o confezionate e campioni su richiesta.",
+    title: "Fichi secchi all'ingrosso",
+    description: "Fichi secchi dalla Türkiye per il commercio all'ingrosso. Nessun ordine minimo; forniture sfuse o confezionate e campioni su richiesta.",
     h1: "Fichi secchi dalla Turchia per la tua attività",
     subheading: "Nessun quantitativo minimo. Discutiamo insieme la fornitura sfusa o confezionata.",
     productIntro: "Forniamo fichi secchi dalla Türkiye ad acquirenti professionali. Contattaci per dettagli aggiornati e disponibilità.",
-    documentationCopy: "Possiamo discutere o condividere su richiesta i dettagli e la documentazione relativi alla qualità e alla conformità per l’esportazione, previa verifica dei documenti applicabili.",
+    documentationCopy: "Possiamo discutere o condividere su richiesta i dettagli e la documentazione relativi alla qualità e alla conformità per l'esportazione, previa verifica dei documenti applicabili.",
     sampleCta: "Informazioni sui campioni",
    
    
     formTitle: "Inviaci una richiesta", nameLabel: "Nome", phoneLabel: "Telefono", emailLabel: "Email", companyOptionalLabel: "Azienda (facoltativo)", countryLabel: "Paese", messageLabel: "Messaggio", submitLabel: "Invia richiesta",
-    privacyNotice: "Il modulo raccoglie nome e cognome, numero di telefono, indirizzo e-mail, paese, messaggio, indirizzo IP e informazioni sul browser; il nome dell’azienda è facoltativo. Usiamo questi dati esclusivamente per rispondere alla richiesta e gestirla. Li conserviamo per un massimo di 60 mesi, poi li cancelliamo.",
+    privacyNotice: "Il modulo raccoglie nome e cognome, numero di telefono, indirizzo e-mail, paese, messaggio, indirizzo IP e informazioni sul browser; il nome dell'azienda è facoltativo. Usiamo questi dati esclusivamente per rispondere alla richiesta e gestirla. Li conserviamo per un massimo di 60 mesi, poi li cancelliamo.",
     successMessage: "Grazie per averci contattato. Abbiamo ricevuto la tua richiesta.",
-    seoKeywords: ["fichi secchi all’ingrosso", "fornitore di fichi secchi", "fichi secchi dalla Turchia", "fornitura di fichi secchi", "fichi secchi sfusi", "fichi secchi confezionati"],
+    seoKeywords: ["fichi secchi all'ingrosso", "fornitore di fichi secchi", "fichi secchi dalla Turchia", "fornitura di fichi secchi", "fichi secchi sfusi", "fichi secchi confezionati"],
     navSupply: "Fornitura", navDocs: "Documentazione", navContact: "Contatti", navAbout: "Chi siamo", menuLabel: "Menu", navCta: "Richiedi dettagli",
-    eyebrow: "Türkiye · Fichi secchi all’ingrosso", supplyTitle: "Fornitura di fichi secchi all’ingrosso", docsTitle: "Verifichiamo quali documenti si applicano al tuo ordine.", docsLabel: "Qualità e documenti per l’esportazione", formIntro: "Raccontaci cosa cerca la tua azienda. Le informazioni aggiornate e le richieste di campioni si gestiscono direttamente con il nostro team.", contactSection: "Parliamone", locationsLabel: "Punti di contatto", countryOptions: ["Stati Uniti", "Svizzera", "Germania", "Paesi Bassi", "Italia", "Francia", "Altro"]
+    eyebrow: "Türkiye · Fichi secchi all'ingrosso", supplyTitle: "Fornitura di fichi secchi all'ingrosso", docsTitle: "Verifichiamo quali documenti si applicano al tuo ordine.", docsLabel: "Qualità e documenti per l'esportazione", formIntro: "Raccontaci cosa cerca la tua azienda. Le informazioni aggiornate e le richieste di campioni si gestiscono direttamente con il nostro team.", contactSection: "Parliamone", locationsLabel: "Punti di contatto", countryOptions: ["Stati Uniti", "Svizzera", "Germania", "Paesi Bassi", "Italia", "Francia", "Altro"]
   },
   nl: {
     locale: "nl", market: "Nederland",
@@ -100,7 +100,7 @@ export function isLocale(value: string): value is Locale {
 export const imageDisclosure: Record<Locale, string> = {
   en: "Illustrative image",
   de: "Symbolbild",
-  fr: "Image d’illustration",
+  fr: "Image d'illustration",
   it: "Immagine illustrativa",
   nl: "Sfeerbeeld"
 };

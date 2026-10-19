@@ -45,30 +45,30 @@ export const faqCopy: Record<Locale, {
   fr: {
     navLabel: "FAQ", homeLabel: "Accueil", contactLabel: "Nous contacter",
     title: "FAQ sur les figues séchées en gros",
-    description: "Réponses sur l’origine des figues séchées, la quantité minimale, le vrac, le conditionnement, les échantillons et les documents.",
-    intro: "Réponses destinées aux acheteurs professionnels sur l’origine, l’approvisionnement, les échantillons et les documents. Contactez-nous pour les informations et disponibilités actuelles.",
+    description: "Réponses sur l'origine des figues séchées, la quantité minimale, le vrac, le conditionnement, les échantillons et les documents.",
+    intro: "Réponses destinées aux acheteurs professionnels sur l'origine, l'approvisionnement, les échantillons et les documents. Contactez-nous pour les informations et disponibilités actuelles.",
     keywords: ["figues séchées en gros FAQ", "fournisseur figues Turquie", "figues séchées en vrac", "demande échantillon figues", "documents export figues"],
     questions: [
-      { question: "D’où viennent vos figues séchées ?", answer: "Nous fournissons des figues séchées de Türkiye. Contactez-nous pour connaître les informations sur le produit et les disponibilités actuelles." },
-      { question: "Y a-t-il une quantité minimale de commande ?", answer: "Aucune quantité minimale de commande n’est imposée. Nous pouvons discuter d’une option d’approvisionnement adaptée à votre demande." },
+      { question: "D'où viennent vos figues séchées ?", answer: "Nous fournissons des figues séchées de Türkiye. Contactez-nous pour connaître les informations sur le produit et les disponibilités actuelles." },
+      { question: "Y a-t-il une quantité minimale de commande ?", answer: "Aucune quantité minimale de commande n'est imposée. Nous pouvons discuter d'une option d'approvisionnement adaptée à votre demande." },
       { question: "Peut-on demander du vrac ou des produits conditionnés ?", answer: "Les options en vrac ou conditionnées peuvent être discutées. Contactez-nous pour confirmer les disponibilités actuelles et les détails applicables à votre commande." },
-      { question: "Comment demander un échantillon ?", answer: "Envoyez-nous une demande en précisant votre souhait d’échantillon. Nous discuterons directement de la demande et des disponibilités actuelles." },
-      { question: "Quels documents de qualité ou d’exportation sont disponibles ?", answer: "Les documents applicables relatifs à la qualité et à la conformité à l’exportation peuvent être discutés ou communiqués sur demande, après confirmation de leur portée." },
-      { question: "Comment obtenir des informations produit à jour ?", answer: "Écrivez-nous ou appelez-nous grâce aux coordonnées affichées sur ce site. Nous confirmons directement les détails du produit, les disponibilités et les demandes d’échantillons." }
+      { question: "Comment demander un échantillon ?", answer: "Envoyez-nous une demande en précisant votre souhait d'échantillon. Nous discuterons directement de la demande et des disponibilités actuelles." },
+      { question: "Quels documents de qualité ou d'exportation sont disponibles ?", answer: "Les documents applicables relatifs à la qualité et à la conformité à l'exportation peuvent être discutés ou communiqués sur demande, après confirmation de leur portée." },
+      { question: "Comment obtenir des informations produit à jour ?", answer: "Écrivez-nous ou appelez-nous grâce aux coordonnées affichées sur ce site. Nous confirmons directement les détails du produit, les disponibilités et les demandes d'échantillons." }
     ]
   },
   it: {
     navLabel: "FAQ", homeLabel: "Home", contactLabel: "Contattaci",
-    title: "FAQ sui fichi secchi all’ingrosso",
-    description: "Informazioni su origine, quantitativo minimo, fornitura sfusa o confezionata, campioni e documenti per l’esportazione.",
+    title: "FAQ sui fichi secchi all'ingrosso",
+    description: "Informazioni su origine, quantitativo minimo, fornitura sfusa o confezionata, campioni e documenti per l'esportazione.",
     intro: "Risposte per gli acquirenti professionali su origine, opzioni di fornitura, campioni e documentazione. Contattaci per i dettagli aggiornati e la disponibilità.",
-    keywords: ["fichi secchi all’ingrosso FAQ", "fornitore fichi Türkiye", "fichi secchi sfusi", "richiedere campioni fichi", "documenti export fichi"],
+    keywords: ["fichi secchi all'ingrosso FAQ", "fornitore fichi Türkiye", "fichi secchi sfusi", "richiedere campioni fichi", "documenti export fichi"],
     questions: [
       { question: "Da dove provengono i fichi secchi?", answer: "Forniamo fichi secchi dalla Türkiye. Contattaci per i dettagli aggiornati sul prodotto e sulla disponibilità." },
-      { question: "È previsto un quantitativo minimo d’ordine?", answer: "Non è previsto un quantitativo minimo d’ordine. Possiamo discutere una fornitura adatta alla tua richiesta." },
+      { question: "È previsto un quantitativo minimo d'ordine?", answer: "Non è previsto un quantitativo minimo d'ordine. Possiamo discutere una fornitura adatta alla tua richiesta." },
       { question: "Posso richiedere una fornitura sfusa o confezionata?", answer: "Le opzioni sfuse o confezionate si possono discutere. Contattaci per confermare la disponibilità attuale e i dettagli applicabili al tuo ordine." },
       { question: "Come posso richiedere un campione?", answer: "Inviaci una richiesta indicando che desideri un campione. Discuteremo direttamente la richiesta e la disponibilità attuale." },
-      { question: "Quali documenti di qualità o per l’esportazione sono disponibili?", answer: "I documenti applicabili sulla qualità e sulla conformità all’esportazione possono essere discussi o condivisi su richiesta, dopo averne confermato l’applicabilità." },
+      { question: "Quali documenti di qualità o per l'esportazione sono disponibili?", answer: "I documenti applicabili sulla qualità e sulla conformità all'esportazione possono essere discussi o condivisi su richiesta, dopo averne confermato l'applicabilità." },
       { question: "Come ottengo informazioni aggiornate sul prodotto?", answer: "Scrivici o chiamaci usando i recapiti presenti su questo sito. Confermiamo direttamente i dettagli del prodotto, la disponibilità e le richieste di campioni." }
     ]
   },

@@ -2,7 +2,7 @@
 
 ## Amaç ve kapsam
 
-Türkiye menşeli kuru incirleri toptan alıcılara tanıtan, ABD ve seçili Avrupa pazarlarında keşfedilebilir B2B web sitesi. Hedef pazarlar ABD, İsviçre, Almanya, Hollanda, İtalya ve Fransa; diller İngilizce, Almanca, Fransızca, İtalyanca ve Hollandaca. Alıcı güncel ürün bilgisi ve numune için işletmeyle iletişime geçer. Sabit minimum sipariş miktarı olmadığı, dökme veya ambalajlı tedarik seçeneklerinin görüşülebileceği açıkça söylenir. Ana sayfada beş dilde bir Hakkımızda bölümü 2017’den beri bu alanda çalışma bilgisini ve kurucular Ziya Teleti ile Muhammed Mehmet Düştu adlarını verir.
+Türkiye menşeli kuru incirleri toptan alıcılara tanıtan, ABD ve seçili Avrupa pazarlarında keşfedilebilir B2B web sitesi. Hedef pazarlar ABD, İsviçre, Almanya, Hollanda, İtalya ve Fransa; diller İngilizce, Almanca, Fransızca, İtalyanca ve Hollandaca. Alıcı güncel ürün bilgisi ve numune için işletmeyle iletişime geçer. Sabit minimum sipariş miktarı olmadığı, dökme veya ambalajlı tedarik seçeneklerinin görüşülebileceği açıkça söylenir. Ana sayfada beş dilde bir Hakkımızda bölümü 2017'den beri bu alanda çalışma bilgisini ve kurucular Ziya Teleti ile Muhammed Mehmet Düştu adlarını verir.
 
 ## Görsel yön
 

@@ -6,9 +6,9 @@ import { copy, type Locale } from "@/lib/copy";
 
 const errors: Record<Locale, { generic: string; required: string }> = {
   en: { generic: "We couldn't send your request. Please try again or contact us directly.", required: "Please check the required fields and try again." },
-  de: { generic: "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.", required: "Bitte prÃ¼fen Sie die Pflichtfelder und versuchen Sie es erneut." },
-  fr: { generic: "Votre demande nâ€™a pas pu Ãªtre envoyÃ©e. RÃ©essayez ou contactez-nous directement.", required: "VÃ©rifiez les champs obligatoires et rÃ©essayez." },
-  it: { generic: "Non Ã¨ stato possibile inviare la richiesta. Riprova o contattaci direttamente.", required: "Controlla i campi obbligatori e riprova." },
+  de: { generic: "Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.", required: "Bitte prüfen Sie die Pflichtfelder und versuchen Sie es erneut." },
+  fr: { generic: "Votre demande n'a pas pu être envoyée. Réessayez ou contactez-nous directement.", required: "Vérifiez les champs obligatoires et réessayez." },
+  it: { generic: "Non è stato possibile inviare la richiesta. Riprova o contattaci direttamente.", required: "Controlla i campi obbligatori e riprova." },
   nl: { generic: "Uw aanvraag kon niet worden verzonden. Probeer het opnieuw of neem rechtstreeks contact op.", required: "Controleer de verplichte velden en probeer het opnieuw." }
 };
 
