@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+<<<<<<< HEAD
 import { hasAdminSession, hasSameOrigin } from "@/lib/admin-auth";
+=======
+import { hasAdminSession } from "@/lib/admin-auth";
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 import { getDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+<<<<<<< HEAD
 const validStatuses = new Set(["new", "contacted", "qualified", "sample_sent", "quoted", "won", "lost"]);
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 export async function GET(request: NextRequest) {
   const headers = { "Cache-Control": "private, no-store, max-age=0" };
@@ -22,8 +29,12 @@ export async function GET(request: NextRequest) {
     const rows = cursor
       ? await sql`
           SELECT id, full_name, phone, email, company, country, message,
+<<<<<<< HEAD
                  ip_address, user_agent, buyer_type, product_interest,
                  estimated_volume, packaging_preference, locale, lead_status, submitted_at
+=======
+                 ip_address, user_agent, submitted_at
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
           FROM inquiries
           WHERE id < ${cursor}::bigint
           ORDER BY id DESC
@@ -31,8 +42,12 @@ export async function GET(request: NextRequest) {
         `
       : await sql`
           SELECT id, full_name, phone, email, company, country, message,
+<<<<<<< HEAD
                  ip_address, user_agent, buyer_type, product_interest,
                  estimated_volume, packaging_preference, locale, lead_status, submitted_at
+=======
+                 ip_address, user_agent, submitted_at
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
           FROM inquiries
           ORDER BY id DESC
           LIMIT 501
@@ -49,6 +64,7 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+<<<<<<< HEAD
 
 export async function PUT(request: NextRequest) {
   const headers = { "Cache-Control": "private, no-store, max-age=0" };
@@ -66,3 +82,5 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ error: "Başvuru durumu kaydedilemedi." }, { status: 503, headers });
   }
 }
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728

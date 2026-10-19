@@ -6,13 +6,18 @@ import { BrandSymbol } from "@/components/brand-lockup";
 type Submission = {
   id: string;
   full_name: string;
+<<<<<<< HEAD
   phone: string | null;
+=======
+  phone: string;
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
   email: string;
   company: string | null;
   country: string;
   message: string;
   ip_address: string;
   user_agent: string;
+<<<<<<< HEAD
   buyer_type: string | null;
   product_interest: string | null;
   estimated_volume: string | null;
@@ -49,20 +54,30 @@ const leadStatuses = [
   ["new", "Yeni"], ["contacted", "İletişime geçildi"], ["qualified", "Nitelikli"],
   ["sample_sent", "Numune gönderildi"], ["quoted", "Teklif verildi"], ["won", "Kazanıldı"], ["lost", "Kaybedildi"]
 ] as const;
+=======
+  submitted_at: string;
+};
+
+type ViewState = "checking" | "login" | "loading" | "ready" | "error";
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 export function AdminPanel() {
   const [state, setState] = useState<ViewState>("checking");
   const [rows, setRows] = useState<Submission[]>([]);
+<<<<<<< HEAD
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [contactSettings, setContactSettings] = useState<ContactSettings | null>(null);
   const [settingsMessage, setSettingsMessage] = useState("");
   const [savingSettings, setSavingSettings] = useState(false);
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [loadingMore, setLoadingMore] = useState(false);
   const [username, setUsername] = useState("mehmetdustu");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
+<<<<<<< HEAD
   const loadAnalytics = useCallback(async () => {
     const response = await fetch("/api/admin/analytics", { cache: "no-store" });
     const data = await response.json() as Analytics & { error?: string };
@@ -99,6 +114,8 @@ export function AdminPanel() {
     }
   }
 
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
   const loadRows = useCallback(async (cursor?: string, append = false) => {
     if (append) setLoadingMore(true);
     else setState("loading");
@@ -130,16 +147,24 @@ export function AdminPanel() {
       .then((response) => response.json())
       .then((data: { authenticated?: boolean }) => {
         if (!active) return;
+<<<<<<< HEAD
         if (data.authenticated) {
           void loadRows();
           void loadAnalytics().catch((error: unknown) => setMessage(error instanceof Error ? error.message : "Ziyaret verileri alınamadı."));
           void loadSettings().catch((error: unknown) => setSettingsMessage(error instanceof Error ? error.message : "İletişim ayarları alınamadı."));
         }
+=======
+        if (data.authenticated) void loadRows();
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
         else setState("login");
       })
       .catch(() => { if (active) setState("login"); });
     return () => { active = false; };
+<<<<<<< HEAD
   }, [loadAnalytics, loadRows, loadSettings]);
+=======
+  }, [loadRows]);
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
   async function login(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -159,8 +184,11 @@ export function AdminPanel() {
       }
       setPassword("");
       await loadRows();
+<<<<<<< HEAD
       await loadAnalytics().catch((error: unknown) => setMessage(error instanceof Error ? error.message : "Ziyaret verileri alınamadı."));
       await loadSettings().catch((error: unknown) => setSettingsMessage(error instanceof Error ? error.message : "İletişim ayarları alınamadı."));
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
     } catch {
       setMessage("Giriş yapılamadı. Ortam değişkenlerini kontrol edin.");
       setState("login");
@@ -170,13 +198,17 @@ export function AdminPanel() {
   async function logout() {
     await fetch("/api/auth/logout", { method: "POST" });
     setRows([]);
+<<<<<<< HEAD
     setAnalytics(null);
     setContactSettings(null);
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
     setNextCursor(null);
     setPassword("");
     setState("login");
   }
 
+<<<<<<< HEAD
   async function updateLeadStatus(id: string, status: string) {
     const response = await fetch("/api/admin/submissions", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, status }) });
     if (!response.ok) {
@@ -187,6 +219,8 @@ export function AdminPanel() {
     setRows((current) => current.map((row) => row.id === id ? { ...row, lead_status: status } : row));
   }
 
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
   if (state === "checking" || state === "loading") {
     return <div className="admin-state">Yükleniyor…</div>;
   }
@@ -218,6 +252,7 @@ export function AdminPanel() {
         <div><p className="eyebrow">ORCHARD TO GLOBAL</p><h1>Başvuru kayıtları</h1></div>
         <div className="admin-actions"><span>{rows.length} kayıt gösteriliyor</span><button className="button button-outline" onClick={() => void loadRows()}>Yenile</button><button className="button button-dark" onClick={() => void logout()}>Çıkış</button></div>
       </header>
+<<<<<<< HEAD
       {contactSettings && <section className="settings-panel">
         <div className="analytics-heading"><div><p className="eyebrow">Site ayarları</p><h2>İletişim bilgileri</h2></div></div>
         <form className="settings-form" onSubmit={saveSettings}>
@@ -240,6 +275,8 @@ export function AdminPanel() {
         {analytics.topEvents.length > 0 && <div className="analytics-paths"><h3>Son 30 günde en çok kullanılan aksiyonlar</h3>{analytics.topEvents.map((item) => <div className="analytics-path" key={item.eventName}><span>{item.eventName}</span><strong>{item.events}</strong></div>)}</div>}
         <p className="analytics-note">Görüntüleme sayıları sunucu tarafında kaydedilir. Ziyaretçi sayıları, IP ve tarayıcı bilgisinin geri döndürülemez hash değerine dayalı yaklaşık benzersiz ziyaretçi sayısıdır.</p>
       </section>}
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
       {state === "error" && <p className="form-feedback error" role="alert">{message}</p>}
       {rows.length === 0 && state !== "error" ? (
         <section className="empty-state"><h2>Henüz başvuru yok</h2><p>İletişim formundan gelen yeni talepler burada listelenecek.</p></section>
@@ -249,9 +286,13 @@ export function AdminPanel() {
             {rows.map((row) => (
               <article className="submission-card" key={row.id}>
                 <header className="submission-head"><div><h2>{row.full_name}</h2><p>{row.company || "Şirket bilgisi paylaşılmadı"} · {row.country}</p></div><time dateTime={row.submitted_at}>{new Intl.DateTimeFormat("tr-TR", { dateStyle: "medium", timeStyle: "short", timeZone: "Europe/Istanbul" }).format(new Date(row.submitted_at))}</time></header>
+<<<<<<< HEAD
                 <div className="submission-contact"><a href={`mailto:${row.email}`}>{row.email}</a>{row.phone && <a href={`tel:${row.phone.replace(/[^+\d]/g, "")}`}>{row.phone}</a>}</div>
                 <dl className="lead-details"><div><dt>Alıcı tipi</dt><dd>{row.buyer_type || "Belirtilmedi"}</dd></div><div><dt>Ürün ilgisi</dt><dd>{row.product_interest || "Belirtilmedi"}</dd></div><div><dt>Tahmini hacim</dt><dd>{row.estimated_volume || "Belirtilmedi"}</dd></div><div><dt>Ambalaj</dt><dd>{row.packaging_preference || "Belirtilmedi"}</dd></div></dl>
                 <label className="lead-status-field">Lead durumu<select value={row.lead_status || "new"} onChange={(event) => void updateLeadStatus(row.id, event.target.value)}>{leadStatuses.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+=======
+                <div className="submission-contact"><a href={`mailto:${row.email}`}>{row.email}</a><a href={`tel:${row.phone.replace(/[^+\d]/g, "")}`}>{row.phone}</a></div>
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
                 <p className="submission-message">{row.message}</p>
                 <details className="submission-tech"><summary>Teknik kayıt bilgileri</summary><dl><div><dt>IP adresi</dt><dd>{row.ip_address}</dd></div><div><dt>Tarayıcı / User-Agent</dt><dd>{row.user_agent}</dd></div></dl></details>
               </article>

@@ -8,7 +8,10 @@ import { copy, isLocale, languageLabel, locales, type Locale } from "@/lib/copy"
 import { faqCopy } from "@/lib/faq-copy";
 import { imageAlt } from "@/lib/image-copy";
 import { alternateLanguages, safeJsonLd } from "@/lib/seo";
+<<<<<<< HEAD
 import { recordPageView } from "@/lib/analytics";
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 type PageProps = { params: Promise<{ locale: string }> };
 const origin = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
@@ -18,7 +21,10 @@ const mainNavigationLabel: Record<Locale, string> = {
 };
 
 export const dynamicParams = false;
+<<<<<<< HEAD
 export const dynamic = "force-dynamic";
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -59,9 +65,14 @@ export default async function LocalizedFaq({ params }: PageProps) {
   if (!isLocale(value)) notFound();
   const locale = value as Locale;
   const text = faqCopy[locale];
+<<<<<<< HEAD
   const faq = faqCopy[locale];
   const pageCopy = copy[locale];
   await recordPageView(`/${locale}/faq`);
+=======
+  const about = aboutCopy[locale];
+  const pageCopy = copy[locale];
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -123,7 +134,11 @@ export default async function LocalizedFaq({ params }: PageProps) {
       <footer className="site-footer section-wrap">
         <BrandLockup href={`/${locale}`} footer />
         <nav className="footer-links" aria-label={mainNavigationLabel[locale]}>
+<<<<<<< HEAD
           <Link href={`/${locale}/about`}>{pageCopy.navAbout}</Link>
+=======
+          <Link href={`/${locale}/about`}>{about.label}</Link>
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
           <Link href={`/${locale}/faq`}>{text.navLabel}</Link>
           <Link href={`/${locale}#contact`}>{pageCopy.navContact}</Link>
         </nav>

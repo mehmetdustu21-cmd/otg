@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { BrandLockup } from "@/components/brand-lockup";
 import { ContactForm } from "@/components/contact-form";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+<<<<<<< HEAD
 import { TrackableLink } from "@/components/trackable-link";
 import { buyerCopy } from "@/lib/buyer-copy";
 import { copy, isLocale, languageLabel, locales, type Locale } from "@/lib/copy";
@@ -13,6 +14,12 @@ import { imageAlt } from "@/lib/image-copy";
 import { alternateLanguages, safeJsonLd, targetMarkets } from "@/lib/seo";
 import { recordPageView } from "@/lib/analytics";
 import { getSiteSettings } from "@/lib/site-settings";
+=======
+import { copy, imageDisclosure, isLocale, languageLabel, locales, type Locale } from "@/lib/copy";
+import { faqCopy } from "@/lib/faq-copy";
+import { imageAlt } from "@/lib/image-copy";
+import { alternateLanguages, safeJsonLd, targetMarkets } from "@/lib/seo";
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 type PageProps = { params: Promise<{ locale: string }> };
 const origin = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
@@ -20,10 +27,23 @@ const localeTag: Record<Locale, string> = { en: "en_US", de: "de_DE", fr: "fr_FR
 const mainNavigationLabel: Record<Locale, string> = {
   en: "Main navigation", de: "Hauptnavigation", fr: "Navigation principale", it: "Navigazione principale", nl: "Hoofdnavigatie"
 };
+<<<<<<< HEAD
 const whatsappHref = "https://wa.me/41783360425?text=Hello%2C%20I%20am%20interested%20in%20wholesale%20dried%20figs.";
 
 export const dynamicParams = false;
 export const dynamic = "force-dynamic";
+=======
+
+const contactLocations: Record<Locale, string> = {
+  en: "Zurich · Istanbul · Aydın",
+  de: "Zürich · Istanbul · Aydın",
+  fr: "Zurich · Istanbul · Aydın",
+  it: "Zurigo · Istanbul · Aydın",
+  nl: "Zürich · Istanbul · Aydın"
+};
+
+export const dynamicParams = false;
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -64,9 +84,12 @@ export default async function LocalizedHome({ params }: PageProps) {
   if (!isLocale(value)) notFound();
   const locale = value as Locale;
   const text = copy[locale];
+<<<<<<< HEAD
   const buyer = buyerCopy[locale];
   await recordPageView(`/${locale}`);
   const contact = await getSiteSettings();
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
   const faq = faqCopy[locale];
   const structuredData = origin ? {
     "@context": "https://schema.org",
@@ -81,13 +104,22 @@ export default async function LocalizedHome({ params }: PageProps) {
           { "@type": "Person", name: "Ziya Teleti" },
           { "@type": "Person", name: "Muhammed Mehmet Düştu" }
         ],
+<<<<<<< HEAD
         email: contact.contact_email,
+=======
+        email: "info@orchardtoglobal.com",
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
         areaServed: targetMarkets.map((name) => ({ "@type": "Country", name })),
         contactPoint: [{
           "@type": "ContactPoint",
           contactType: "sales",
+<<<<<<< HEAD
           email: contact.contact_email,
           telephone: [contact.phone_primary, contact.phone_secondary],
+=======
+          email: "info@orchardtoglobal.com",
+          telephone: ["+41 78 336 04 25", "+90 536 847 6521"],
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
           availableLanguage: ["English", "German", "French", "Italian", "Dutch"]
         }]
       },
@@ -137,8 +169,13 @@ export default async function LocalizedHome({ params }: PageProps) {
             <h1>{text.h1}</h1>
             <p className="hero-lede">{text.subheading}</p>
             <div className="hero-actions">
+<<<<<<< HEAD
               <TrackableLink className="button button-dark" href="#contact" eventName="quote_click">{buyer.quoteCta}</TrackableLink>
               <TrackableLink className="text-link" href="#contact" eventName="sample_click">{buyer.sampleCta}</TrackableLink>
+=======
+              <a className="button button-dark" href="#contact">{text.navCta}</a>
+              <a className="text-link" href="#contact">{text.sampleCta}</a>
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
             </div>
           </div>
           <div className="hero-visual">
@@ -154,10 +191,15 @@ export default async function LocalizedHome({ params }: PageProps) {
             </div>
             <figure className="detail-figure">
               <Image src="/images/dried-figs-detail.webp" alt={imageAlt[locale].detail} width={1920} height={1280} sizes="(max-width: 760px) 100vw, 42vw" />
+<<<<<<< HEAD
+=======
+              <figcaption><span>{imageDisclosure[locale]}</span></figcaption>
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
             </figure>
           </div>
         </section>
 
+<<<<<<< HEAD
         <section className="buyer-section section-wrap" id="buyers">
           <div className="section-heading"><p className="eyebrow">{buyer.sectionLabel}</p><h2>{buyer.sectionTitle}</h2></div>
           <p className="buyer-intro section-lede">{buyer.sectionIntro}</p>
@@ -177,6 +219,8 @@ export default async function LocalizedHome({ params }: PageProps) {
           <div><p className="section-lede">{buyer.marketText}</p><TrackableLink className="text-link" href={whatsappHref} target="_blank" rel="noreferrer" eventName="whatsapp_click">{buyer.whatsappCta}</TrackableLink></div>
         </section>
 
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
         <section className="documentation-section" id="documentation">
           <div className="documentation-inner section-wrap">
             <div className="documentation-heading"><p className="eyebrow eyebrow-light">02 / {text.docsLabel}</p><h2>{text.docsTitle}</h2></div>
@@ -188,10 +232,16 @@ export default async function LocalizedHome({ params }: PageProps) {
           <div className="contact-intro">
             <p className="eyebrow">03 / {text.navContact}</p><h2>{text.contactSection}</h2><p className="section-lede">{text.formIntro}</p>
             <div className="contact-details">
+<<<<<<< HEAD
               <div className="contact-detail"><span className="detail-label">{text.locationsLabel}</span><p>{contact.contact_locations}</p></div>
               <div className="contact-detail"><span className="detail-label">{text.emailLabel}</span><TrackableLink href={`mailto:${contact.contact_email}`} eventName="email_click">{contact.contact_email}</TrackableLink></div>
               <div className="contact-detail"><span className="detail-label">{text.phoneLabel}</span><a href={`tel:${contact.phone_primary.replace(/[^+\d]/g, "")}`}>{contact.phone_primary}</a><a href={`tel:${contact.phone_secondary.replace(/[^+\d]/g, "")}`}>{contact.phone_secondary}</a></div>
               <TrackableLink className="contact-whatsapp" href={whatsappHref} target="_blank" rel="noreferrer" eventName="whatsapp_click">{buyer.whatsappCta}</TrackableLink>
+=======
+              <div className="contact-detail"><span className="detail-label">{text.locationsLabel}</span><p>{contactLocations[locale]}</p></div>
+              <div className="contact-detail"><span className="detail-label">{text.emailLabel}</span><a href="mailto:info@orchardtoglobal.com">info@orchardtoglobal.com</a></div>
+              <div className="contact-detail"><span className="detail-label">{text.phoneLabel}</span><a href="tel:+41783360425">+41 78 336 04 25</a><a href="tel:+905368476521">+90 536 847 6521</a></div>
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
             </div>
           </div>
           <div className="contact-form-panel"><div className="form-heading"><h3>{text.formTitle}</h3></div><ContactForm locale={locale} /></div>
@@ -204,7 +254,10 @@ export default async function LocalizedHome({ params }: PageProps) {
           <Link href={`/${locale}/about`}>{text.navAbout}</Link>
           <Link href={`/${locale}/faq`}>{faq.navLabel}</Link>
           <a href="#contact">{text.navContact}</a>
+<<<<<<< HEAD
           <Link href={`/${locale}/privacy`}>{buyer.privacyLink}</Link>
+=======
+>>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
         </nav>
       </footer>
     </div>
