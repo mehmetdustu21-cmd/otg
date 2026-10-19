@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
-<<<<<<< HEAD
 import { rateLimit, requestAddress } from "@/lib/rate-limit";
-=======
->>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -15,21 +12,18 @@ function cleanText(value: unknown, limit: number): string {
 }
 
 export async function POST(request: NextRequest) {
-<<<<<<< HEAD
   const limit = rateLimit(`contact:${requestAddress(request)}`, 5, 60 * 60_000);
   if (!limit.allowed) {
-    return NextResponse.json({ error: "Çok fazla form gönderildi. Lütfen daha sonra tekrar deneyin." }, { status: 429, headers: { ...privateHeaders, "Retry-After": String(limit.retryAfter) } });
+    return NextResponse.json({ error: "Ã‡ok fazla form gÃ¶nderildi. LÃ¼tfen daha sonra tekrar deneyin." }, { status: 429, headers: { ...privateHeaders, "Retry-After": String(limit.retryAfter) } });
   }
-=======
->>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
   const declaredLength = Number(request.headers.get("content-length") || 0);
   if (declaredLength > 20_000) {
-    return NextResponse.json({ error: "Form verisi çok büyük." }, { status: 413, headers: privateHeaders });
+    return NextResponse.json({ error: "Form verisi Ã§ok bÃ¼yÃ¼k." }, { status: 413, headers: privateHeaders });
   }
 
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
   if (!body) {
-    return NextResponse.json({ error: "Form verisi okunamadı." }, { status: 400, headers: privateHeaders });
+    return NextResponse.json({ error: "Form verisi okunamadÄ±." }, { status: 400, headers: privateHeaders });
   }
 
   // Quietly accept bot honeypot submissions without storing them.
@@ -38,16 +32,11 @@ export async function POST(request: NextRequest) {
   }
 
   const fullName = cleanText(body.fullName, 140);
-<<<<<<< HEAD
   const phone = cleanText(body.phone, 50) || null;
-=======
-  const phone = cleanText(body.phone, 50);
->>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
   const email = cleanText(body.email, 254).toLowerCase();
   const company = cleanText(body.company, 200) || null;
   const country = cleanText(body.country, 100);
   const message = cleanText(body.message, 5000);
-<<<<<<< HEAD
   const buyerType = cleanText(body.buyerType, 120) || null;
   const productInterest = cleanText(body.productInterest, 160) || null;
   const estimatedVolume = cleanText(body.estimatedVolume, 160) || null;
@@ -56,13 +45,8 @@ export async function POST(request: NextRequest) {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (fullName.length < 2 || !emailPattern.test(email) || country.length < 2 || message.length < 8) {
-=======
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (fullName.length < 2 || phone.length < 6 || !emailPattern.test(email) || country.length < 2 || message.length < 8) {
->>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
     return NextResponse.json(
-      { error: "Lütfen zorunlu alanları kontrol edin ve geçerli bir e-posta adresi girin." },
+      { error: "LÃ¼tfen zorunlu alanlarÄ± kontrol edin ve geÃ§erli bir e-posta adresi girin." },
       { status: 400, headers: privateHeaders }
     );
   }
@@ -74,7 +58,6 @@ export async function POST(request: NextRequest) {
   try {
     const sql = getDb();
     await sql`
-<<<<<<< HEAD
       INSERT INTO inquiries (full_name, phone, email, company, country, message, ip_address, user_agent, buyer_type, product_interest, estimated_volume, packaging_preference, locale)
       VALUES (${fullName}, ${phone}, ${email}, ${company}, ${country}, ${message}, ${ipAddress}, ${userAgent}, ${buyerType}, ${productInterest}, ${estimatedVolume}, ${packagingPreference}, ${locale})
     `;
@@ -87,15 +70,10 @@ export async function POST(request: NextRequest) {
         signal: AbortSignal.timeout(3_000)
       }).catch(() => undefined);
     }
-=======
-      INSERT INTO inquiries (full_name, phone, email, company, country, message, ip_address, user_agent)
-      VALUES (${fullName}, ${phone}, ${email}, ${company}, ${country}, ${message}, ${ipAddress}, ${userAgent})
-    `;
->>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
     return NextResponse.json({ ok: true }, { status: 201, headers: privateHeaders });
   } catch {
     return NextResponse.json(
-      { error: "Talebiniz şu anda kaydedilemedi. Lütfen doğrudan e-posta veya telefonla iletişime geçin." },
+      { error: "Talebiniz ÅŸu anda kaydedilemedi. LÃ¼tfen doÄŸrudan e-posta veya telefonla iletiÅŸime geÃ§in." },
       { status: 503, headers: privateHeaders }
     );
   }

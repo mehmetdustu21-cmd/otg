@@ -7,10 +7,7 @@ import { aboutCopy } from "@/lib/about-copy";
 import { copy, isLocale, languageLabel, locales, type Locale } from "@/lib/copy";
 import { faqCopy } from "@/lib/faq-copy";
 import { alternateLanguages } from "@/lib/seo";
-<<<<<<< HEAD
 import { recordPageView } from "@/lib/analytics";
-=======
->>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 type PageProps = { params: Promise<{ locale: string }> };
 const origin = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
@@ -19,10 +16,7 @@ const mainNavigationLabel: Record<Locale, string> = {
 };
 
 export const dynamicParams = false;
-<<<<<<< HEAD
 export const dynamic = "force-dynamic";
-=======
->>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -50,10 +44,7 @@ export default async function AboutPage({ params }: PageProps) {
   const text = copy[locale];
   const about = aboutCopy[locale];
   const faq = faqCopy[locale];
-<<<<<<< HEAD
   await recordPageView(`/${locale}/about`);
-=======
->>>>>>> 5d41412b7acb25eeba97bd13f612a04efac85728
 
   return (
     <div className="site" lang={locale}>
