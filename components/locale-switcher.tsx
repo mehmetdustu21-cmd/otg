@@ -9,13 +9,13 @@ const options: { code: Locale; label: string; name: string }[] = [
   { code: "nl", label: "NL", name: "Nederlands" }
 ];
 
-export function LocaleSwitcher({ current, label }: { current: Locale; label: string }) {
+export function LocaleSwitcher({ current, label, suffix = "" }: { current: Locale; label: string; suffix?: string }) {
   return (
     <nav className="locale-switcher" aria-label={label}>
       {options.map((option) => (
         <Link
           key={option.code}
-          href={`/${option.code}`}
+          href={`/${option.code}${suffix}`}
           hrefLang={option.code}
           aria-label={option.name}
           aria-current={current === option.code ? "page" : undefined}

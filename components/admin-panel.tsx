@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { BrandSymbol } from "@/components/brand-lockup";
 
 type Submission = {
   id: string;
@@ -105,7 +106,7 @@ export function AdminPanel() {
       <section className="admin-login">
         <a className="back-link" href="/">← Ana siteye dön</a>
         <div className="admin-login-card">
-          <div className="brand-mark small-mark" aria-hidden="true">◒</div>
+          <div className="small-mark" aria-hidden="true"><BrandSymbol className="admin-mark-image" /></div>
           <p className="eyebrow">ORCHARD TO GLOBAL</p>
           <h1>Yönetici girişi</h1>
           <p className="admin-muted">Teklif ve numune taleplerini görüntülemek için giriş yapın.</p>
@@ -129,7 +130,7 @@ export function AdminPanel() {
       </header>
       {state === "error" && <p className="form-feedback error" role="alert">{message}</p>}
       {rows.length === 0 && state !== "error" ? (
-        <section className="empty-state"><span className="empty-icon" aria-hidden="true">✳</span><h2>Henüz başvuru yok</h2><p>İletişim formundan gelen yeni talepler burada listelenecek.</p></section>
+        <section className="empty-state"><h2>Henüz başvuru yok</h2><p>İletişim formundan gelen yeni talepler burada listelenecek.</p></section>
       ) : (
         <>
           <div className="submissions-list">
