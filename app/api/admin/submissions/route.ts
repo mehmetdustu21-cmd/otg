@@ -1,0 +1,48 @@
+import { NextRequest, NextResponse } from "next/server";
+import { hasAdminSession } from "@/lib/admin-auth";
+import { getDb } from "@/lib/db";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+export async function GET(request: NextRequest) {
+  const headers = { "Cache-Control": "private, no-store, max-age=0" };
+  if (!hasAdminSession(request)) {
+    return NextResponse.json({ error: "Oturum açmanız gerekiyor." }, { status: 401, headers });
+  }
+
+  const cursor = request.nextUrl.searchParams.get("before");
+  if (cursor && !/^\d{1,20}$/.test(cursor)) {
+    return NextResponse.json({ error: "Sayfalama imleci geçersiz." }, { status: 400, headers });
+  }
+
+  try {
+    const sql = getDb();
+    const rows = cursor
+      ? await sql`
+          SELECT id, full_name, phone, email, company, country, message,
+                 ip_address, user_agent, submitted_at
+          FROM inquiries
+          WHERE id < ${cursor}::bigint
+          ORDER BY id DESC
+          LIMIT 501
+        `
+      : await sql`
+          SELECT id, full_name, phone, email, company, country, message,
+                 ip_address, user_agent, submitted_at
+          FROM inquiries
+          ORDER BY id DESC
+          LIMIT 501
+        `;
+
+    const hasMore = rows.length > 500;
+    const submissions = hasMore ? rows.slice(0, 500) : rows;
+    const nextCursor = hasMore ? String(submissions[submissions.length - 1].id) : null;
+    return NextResponse.json({ submissions, nextCursor }, { headers });
+  } catch {
+    return NextResponse.json(
+      { error: "Kayıtlar şu anda alınamıyor. Veritabanı bağlantısını ve tablo kurulumunu kontrol edin." },
+      { status: 503, headers }
+    );
+  }
+}
