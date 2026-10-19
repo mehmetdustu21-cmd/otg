@@ -78,9 +78,20 @@ export default async function LocalizedFaq({ params }: PageProps) {
           <Link href={`/${locale}`}>{text.homeLabel}</Link>
           <Link href={`/${locale}#supply`}>{pageCopy.navSupply}</Link>
           <Link href={`/${locale}#contact`}>{pageCopy.navContact}</Link>
+          <Link href={`/${locale}/about`}>{pageCopy.navAbout}</Link>
           <Link href={`/${locale}/faq`} aria-current="page">{text.navLabel}</Link>
         </nav>
         <div className="header-actions"><LocaleSwitcher current={locale} label={languageLabel[locale]} suffix="/faq" /></div>
+        <details className="mobile-menu">
+          <summary aria-label={pageCopy.menuLabel}><span className="menu-icon" aria-hidden="true"><i /><i /><i /></span><span>{pageCopy.menuLabel}</span></summary>
+          <nav className="mobile-menu-panel" aria-label={mainNavigationLabel[locale]}>
+            <Link href={`/${locale}`}>{text.homeLabel}</Link>
+            <Link href={`/${locale}#supply`}>{pageCopy.navSupply}</Link>
+            <Link href={`/${locale}#contact`}>{pageCopy.navContact}</Link>
+            <Link href={`/${locale}/about`}>{pageCopy.navAbout}</Link>
+            <Link href={`/${locale}/faq`} aria-current="page">{text.navLabel}</Link>
+          </nav>
+        </details>
       </header>
 
       <main className="faq-main section-wrap">
@@ -102,14 +113,14 @@ export default async function LocalizedFaq({ params }: PageProps) {
         </section>
         <section className="faq-contact">
           <div><p className="eyebrow eyebrow-light">Orchard to Global</p><h2>{pageCopy.contactSection}</h2></div>
-          <Link className="button button-light" href={`/${locale}#contact`}>{text.contactLabel}<span aria-hidden="true">↗</span></Link>
+          <Link className="button button-light" href={`/${locale}#contact`}>{text.contactLabel}</Link>
         </section>
       </main>
 
       <footer className="site-footer section-wrap">
         <BrandLockup href={`/${locale}`} footer />
         <nav className="footer-links" aria-label={mainNavigationLabel[locale]}>
-          <Link href={`/${locale}#about`}>{about.label}</Link>
+          <Link href={`/${locale}/about`}>{about.label}</Link>
           <Link href={`/${locale}/faq`}>{text.navLabel}</Link>
           <Link href={`/${locale}#contact`}>{pageCopy.navContact}</Link>
         </nav>

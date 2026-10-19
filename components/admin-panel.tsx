@@ -114,7 +114,7 @@ export function AdminPanel() {
             <label>Kullanıcı adı<input value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" required /></label>
             <label>Parola<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" required /></label>
             {message && <p className="form-feedback error" role="alert">{message}</p>}
-            <button className="button button-dark" type="submit">Giriş yap <span aria-hidden="true">↗</span></button>
+            <button className="button button-dark" type="submit">Giriş yap</button>
           </form>
           <p className="admin-footnote">Parola uygulama kaynak kodunda tutulmaz; Vercel ortam değişkeninden okunur.</p>
         </div>

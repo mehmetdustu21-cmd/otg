@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { BrandLockup } from "@/components/brand-lockup";
 import { ContactForm } from "@/components/contact-form";
 import { LocaleSwitcher } from "@/components/locale-switcher";
-import { aboutCopy } from "@/lib/about-copy";
 import { copy, imageDisclosure, isLocale, languageLabel, locales, type Locale } from "@/lib/copy";
 import { faqCopy } from "@/lib/faq-copy";
 import { imageAlt } from "@/lib/image-copy";
@@ -67,7 +66,6 @@ export default async function LocalizedHome({ params }: PageProps) {
   if (!isLocale(value)) notFound();
   const locale = value as Locale;
   const text = copy[locale];
-  const about = aboutCopy[locale];
   const faq = faqCopy[locale];
   const structuredData = origin ? {
     "@context": "https://schema.org",
@@ -112,12 +110,23 @@ export default async function LocalizedHome({ params }: PageProps) {
           <a href="#supply">{text.navSupply}</a>
           <a href="#documentation">{text.navDocs}</a>
           <a href="#contact">{text.navContact}</a>
+          <Link href={`/${locale}/about`}>{text.navAbout}</Link>
           <Link href={`/${locale}/faq`}>{faq.navLabel}</Link>
         </nav>
         <div className="header-actions">
           <LocaleSwitcher current={locale} label={languageLabel[locale]} />
-          <a className="header-cta" href="#contact">{text.navCta}<span aria-hidden="true">↗</span></a>
+          <a className="header-cta" href="#contact">{text.navCta}</a>
         </div>
+        <details className="mobile-menu">
+          <summary aria-label={text.menuLabel}><span className="menu-icon" aria-hidden="true"><i /><i /><i /></span><span>{text.menuLabel}</span></summary>
+          <nav className="mobile-menu-panel" aria-label={mainNavigationLabel[locale]}>
+            <a href="#supply">{text.navSupply}</a>
+            <a href="#documentation">{text.navDocs}</a>
+            <a href="#contact">{text.navContact}</a>
+            <Link href={`/${locale}/about`}>{text.navAbout}</Link>
+            <Link href={`/${locale}/faq`}>{faq.navLabel}</Link>
+          </nav>
+        </details>
       </header>
 
       <main>
@@ -127,8 +136,8 @@ export default async function LocalizedHome({ params }: PageProps) {
             <h1>{text.h1}</h1>
             <p className="hero-lede">{text.subheading}</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="#contact">{text.navCta}<span aria-hidden="true">↗</span></a>
-              <a className="text-link" href="#contact">{text.sampleCta}<span aria-hidden="true">→</span></a>
+              <a className="button button-dark" href="#contact">{text.navCta}</a>
+              <a className="text-link" href="#contact">{text.sampleCta}</a>
             </div>
           </div>
           <div className="hero-visual">
@@ -149,17 +158,10 @@ export default async function LocalizedHome({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="about-section" id="about">
-          <div className="about-inner section-wrap">
-            <div className="about-heading"><p className="eyebrow">{about.label}</p><h2>{about.title}</h2></div>
-            <div className="about-copy"><p>{about.body}</p><p className="about-founders"><span className="detail-label">{about.foundersLabel}</span><strong>{about.founders}</strong></p></div>
-          </div>
-        </section>
-
         <section className="documentation-section" id="documentation">
           <div className="documentation-inner section-wrap">
             <div className="documentation-heading"><p className="eyebrow eyebrow-light">02 / {text.docsLabel}</p><h2>{text.docsTitle}</h2></div>
-            <div className="documentation-copy"><p>{text.documentationCopy}</p><a className="light-link" href="#contact">{text.navContact}<span aria-hidden="true">↗</span></a></div>
+            <div className="documentation-copy"><p>{text.documentationCopy}</p><a className="light-link" href="#contact">{text.navContact}</a></div>
           </div>
         </section>
 
@@ -179,7 +181,7 @@ export default async function LocalizedHome({ params }: PageProps) {
       <footer className="site-footer section-wrap">
         <BrandLockup href={`/${locale}`} footer />
         <nav className="footer-links" aria-label={mainNavigationLabel[locale]}>
-          <a href="#about">{about.label}</a>
+          <Link href={`/${locale}/about`}>{text.navAbout}</Link>
           <Link href={`/${locale}/faq`}>{faq.navLabel}</Link>
           <a href="#contact">{text.navContact}</a>
         </nav>

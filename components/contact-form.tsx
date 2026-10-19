@@ -81,7 +81,7 @@ export function ContactForm({ locale }: { locale: Locale }) {
       <p className="privacy-note">{text.privacyNotice}</p>
       {notice && <p className={`form-feedback ${notice.kind}`} role="status">{notice.text}</p>}
       <button className="button button-dark form-submit" type="submit" disabled={busy}>
-        {busy ? "…" : text.submitLabel}<span aria-hidden="true">↗</span>
+        {busy ? "..." : text.submitLabel}
       </button>
     </form>
   );
