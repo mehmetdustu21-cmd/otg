@@ -7,17 +7,17 @@ Beş dilli (İngilizce, Almanca, Fransızca, İtalyanca ve Hollandaca), SEO odak
 - Node.js 20.9 veya üstü, pnpm 11.25.0 kullanın (`package.json` içindeki `packageManager` sürümü sabitler).
 - `pnpm install --frozen-lockfile`
 - `.env.example` dosyasını `.env.local` olarak kopyalayıp Neon bağlantı dizesini ve gereken değişkenleri tanımlayın.
-- Neon SQL Editor'da sırasıyla `db/001_init.sql`, `db/002_analytics.sql` ve `db/003_site_settings.sql` dosyalarını bir kez çalıştırın.
+- Neon SQL Editor'da sırasıyla `db/001_init.sql`, `db/002_analytics.sql`, `db/003_site_settings.sql`, `db/004_lead_fields.sql`, `db/005_events.sql`, `db/006_lead_status.sql` ve `db/007_contact_email.sql` dosyalarını bir kez çalıştırın.
 - `pnpm dev` ile açın; `pnpm typecheck` ve `pnpm build` derleme kontrolleridir.
 
 ## Vercel'e dağıtım
 
 1. Kaynak kodu GitHub gibi bir Git sağlayıcısına yükleyin ve Vercel'de **Add New → Project** ile içe aktarın. Arşivden aktarılıyorsa depo içeriğini proje kök dizinine yükleyin. Root Directory depo kökü olmalıdır; Next.js framework'ü otomatik algılanır.
 2. Project Settings → Environment Variables bölümünde aşağıdaki değerleri ekleyin. Canlı kullanım için en az Production scope'u; önizlemelerde test edecekseniz Preview/Development scope'larını da ayarlayın.
-3. Neon'da bir proje oluşturun ve Connect ekranındaki **pooled** bağlantı dizesini Vercel'de `DATABASE_URL` olarak kaydedin. Neon SQL Editor'da `db/001_init.sql`, `db/002_analytics.sql` ve `db/003_site_settings.sql` dosyalarını **bir kez** çalıştırın; uygulama otomatik migration yürütmez.
+3. Neon'da bir proje oluşturun ve Connect ekranındaki **pooled** bağlantı dizesini Vercel'de `DATABASE_URL` olarak kaydedin. Neon SQL Editor'da `db/001_init.sql`, `db/002_analytics.sql`, `db/003_site_settings.sql`, `db/004_lead_fields.sql`, `db/005_events.sql`, `db/006_lead_status.sql` ve `db/007_contact_email.sql` dosyalarını **bir kez** çalıştırın; uygulama otomatik migration yürütmez.
 4. Vercel Project → Settings → Domains bölümünde gerçek alan adını ekleyip alan adı sağlayıcınızın istediği DNS kayıtlarını tamamlayın. Domain belli olduğunda `NEXT_PUBLIC_SITE_URL` değerini `https://gercek-alan-adiniz` biçiminde, sondaki `/` olmadan girin. Vercel'in oluşturduğu `https://proje-adiniz.vercel.app` alan adı kullanılacaksa o origin'i girin. Canonical, hreflang, Open Graph ve sitemap adresleri bu değişkenden üretilir; alan adı bilinmeden tahmini URL kullanılmaz. Bu değişken build sırasında kullanıldığı için değiştirildiğinde yeniden deploy edin.
 5. Değişkenleri ve SQL şemasını doğruladıktan sonra Vercel Dashboard'dan deploy edin veya projeyi yerelde Vercel CLI ile bağlayıp `vercel --prod` çalıştırın. `vercel.json` retention Cron'unu günlük 03:00 UTC için tanımlar; Vercel Cron Production deploy'unda `/api/cron/retention` çağrısını yapar. Cron doğrulaması için Vercel'de `CRON_SECRET` tanımlı olmalıdır.
-6. Yayından sonra beş `/{locale}` ana sayfasını ve beş `/{locale}/faq` rotasını, hreflang/canonical adreslerini, sitemap'i, iletişim formunu, `/admin` girişini ve cron çalışma kaydını kontrol edin. Üretimden önce işletmenin yasal unvanı, veri sorumlusu iletişim bilgisi, geçerli hukuki dayanak ve ilgili gizlilik yükümlülüklerini işletme doğrulamalıdır.
+6. Yayından sonra beş `/{locale}` ana sayfasını, `/{locale}/about`, `/{locale}/faq` ve `/{locale}/privacy` rotalarını, hreflang/canonical adreslerini, sitemap'i, WhatsApp bağlantısını, PDF buyer brief indirmesini, iletişim formunu, `/admin` girişini ve cron çalışma kaydını kontrol edin. Üretimden önce işletmenin yasal unvanı, veri sorumlusu iletişim bilgisi, geçerli hukuki dayanak ve ilgili gizlilik yükümlülüklerini işletme doğrulamalıdır.
 
 | Değişken | Açıklama |
 | --- | --- |
@@ -28,18 +28,21 @@ Beş dilli (İngilizce, Almanca, Fransızca, İtalyanca ve Hollandaca), SEO odak
 | `SESSION_SECRET` | İmzalı yönetici oturumları için rastgele, en az 32 karakterlik gizli değer. |
 | `CRON_SECRET` | Vercel Cron'un `Authorization: Bearer ...` başlığında kullanacağı gizli değerle aynı olmalıdır. |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL, hreflang, Open Graph ve sitemap için gerçek, dışarıdan erişilen site origin'i; sondaki `/` olmamalıdır. |
+| `INQUIRY_NOTIFICATION_WEBHOOK_URL` | İsteğe bağlı JSON webhook. Yeni bir başvuru kaydedildiğinde kurum içi otomasyon veya bildirim endpoint'ine gönderilir. |
 
 `SESSION_SECRET`, `CRON_SECRET` ve `ANALYTICS_HASH_SALT` için ayrı değerler üretin; örneğin güvenli bir terminalde her biri için `openssl rand -base64 48` çalıştırabilirsiniz. Oluşan değerleri kaynak koda, Git'e, issue'lara veya dağıtım arşivine koymayın. `DATABASE_URL` build sırasında zorunlu değildir; fakat Neon şeması ve bağlantısı kurulmadan form kayıtları, admin kayıt listesi, ziyaret istatistikleri ve retention temizliği çalışmaz. `ADMIN_PASSWORD` tanımlanmazsa admin girişi kapalı kalır; `SESSION_SECRET` en az 32 karakter olmalıdır. Yönetici oturum çerezi HttpOnly, Secure ve SameSite=None ayarlarıyla 8 saat geçerlidir; admin sayfası noindex'tir ve admin API yanıtları cache dışıdır.
 
-Formda honeypot ve alan doğrulaması bulunur; ancak form ve admin giriş uç noktalarında dağıtık rate limit uygulama koduna dahil değildir. Üretime açmadan önce Vercel planınızın desteklediği Firewall/WAF kuralıyla `POST /api/auth/login` ve `POST /api/contact` isteklerini sınırlayın ve admin için uzun, benzersiz bir parola kullanın. Admin login/logout POST istekleri ayrıca same-origin doğrulamasından geçer.
+Formda honeypot, alan doğrulaması ve process başına temel rate limit bulunur; serverless instance’lar arasında ortak limit için üretimde Vercel Firewall/WAF kuralıyla `POST /api/auth/login`, `POST /api/contact` ve gerekirse `POST /api/events` isteklerini ayrıca sınırlayın. Admin login/logout ve ayar güncelleme POST/PUT istekleri same-origin doğrulamasından geçer.
 
 ## Form, gizlilik ve retention
 
-Form; ad-soyad, telefon, e-posta, isteğe bağlı şirket adı, ülke ve mesajı PostgreSQL'e kaydeder. Sunucu ayrıca IP adresi ve User-Agent tarayıcı bilgisini alır. Formun yanındaki bildirim toplanan alanları, yalnızca talebi yanıtlama/işletme takibi amacını ve en fazla 60 aylık saklama süresini açıklar. Günlük Vercel Cron, 60 aydan eski kayıtları siler. Bu uygulama hukuki danışmanlık değildir.
+Form; ad-soyad, isteğe bağlı telefon, e-posta, isteğe bağlı şirket adı, alıcı tipi, ülke, ürün ilgisi, tahmini hacim, ambalaj tercihi, dil ve mesajı PostgreSQL'e kaydeder. Sunucu ayrıca IP adresi ve User-Agent tarayıcı bilgisini alır. Formun yanındaki bildirim toplanan alanları, yalnızca talebi yanıtlama/işletme takibi amacını ve en fazla 60 aylık saklama süresini açıklar. Günlük Vercel Cron, 60 aydan eski kayıtları siler. Bu uygulama hukuki danışmanlık değildir.
 
 Ziyaret analitiği, herkese açık sayfaların sunucu tarafı görüntülenmelerini `site_visits` tablosuna kaydeder. Günlük, son 7 gün, son 30 gün ve toplam görüntüleme sayıları admin panelinde gösterilir. Benzersiz ziyaretçi sayısı IP + User-Agent bilgilerinin geri döndürülemez hash değerine dayanır; bu nedenle gerçek kişi sayısı değil, gizlilik dostu bir tahmindir. Reklam engelleyiciler veya JavaScript kapalı olması bu server-side görüntüleme ölçümünü etkilemez; bot trafiği ayrıca filtrelenmediği için raporlar insan ziyaretinden biraz yüksek olabilir.
 
 `site_settings` tablosu üzerinden e-posta, iki telefon numarası ve iletişim konumları yönetilir. Yönetici `/admin` panelindeki “İletişim bilgileri” formunu kaydettiğinde ana sayfanın iletişim alanı ve Organization yapılandırılmış verisi yeni değerleri kullanır.
+
+Ana sayfadaki teklif, numune, WhatsApp, e-posta, PDF indirme ve form başlangıç/gönderim aksiyonları `site_events` tablosunda anonim ziyaretçi hash'i ile ölçülür. Admin paneli son 30 gündeki en sık aksiyonları gösterir. `public/downloads/orchard-to-global-buyer-brief.pdf`, doğrulanmamış fiyat, sertifika veya sevkiyat sözü içermeyen genel bir alıcı brifidir.
 
 ## İçerik doğruluğu ve iletişim
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { hasAdminSession } from "@/lib/admin-auth";
+import { hasAdminSession, hasSameOrigin } from "@/lib/admin-auth";
 import { getDb } from "@/lib/db";
 import { defaultSiteSettings, getSiteSettings, type SiteSettings } from "@/lib/site-settings";
 
@@ -28,6 +28,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
+  if (!hasSameOrigin(request)) return NextResponse.json({ error: "Geçersiz istek kaynağı." }, { status: 403, headers: responseHeaders });
   if (!hasAdminSession(request)) return NextResponse.json({ error: "Oturum açmanız gerekiyor." }, { status: 401, headers: responseHeaders });
   const body = await request.json().catch(() => null) as Partial<SiteSettings> | null;
   const settings = body ? validate(body) : null;

@@ -6,13 +6,19 @@ import { BrandSymbol } from "@/components/brand-lockup";
 type Submission = {
   id: string;
   full_name: string;
-  phone: string;
+  phone: string | null;
   email: string;
   company: string | null;
   country: string;
   message: string;
   ip_address: string;
   user_agent: string;
+  buyer_type: string | null;
+  product_interest: string | null;
+  estimated_volume: string | null;
+  packaging_preference: string | null;
+  locale: string | null;
+  lead_status: string;
   submitted_at: string;
 };
 
@@ -28,6 +34,7 @@ type Analytics = {
     totalVisitors: number;
   };
   topPaths: { path: string; views: number }[];
+  topEvents: { eventName: string; events: number }[];
 };
 
 type ContactSettings = {
@@ -38,6 +45,10 @@ type ContactSettings = {
 };
 
 type ViewState = "checking" | "login" | "loading" | "ready" | "error";
+const leadStatuses = [
+  ["new", "Yeni"], ["contacted", "İletişime geçildi"], ["qualified", "Nitelikli"],
+  ["sample_sent", "Numune gönderildi"], ["quoted", "Teklif verildi"], ["won", "Kazanıldı"], ["lost", "Kaybedildi"]
+] as const;
 
 export function AdminPanel() {
   const [state, setState] = useState<ViewState>("checking");
@@ -166,6 +177,16 @@ export function AdminPanel() {
     setState("login");
   }
 
+  async function updateLeadStatus(id: string, status: string) {
+    const response = await fetch("/api/admin/submissions", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, status }) });
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({})) as { error?: string };
+      setMessage(data.error || "Başvuru durumu kaydedilemedi.");
+      return;
+    }
+    setRows((current) => current.map((row) => row.id === id ? { ...row, lead_status: status } : row));
+  }
+
   if (state === "checking" || state === "loading") {
     return <div className="admin-state">Yükleniyor…</div>;
   }
@@ -216,6 +237,7 @@ export function AdminPanel() {
           <article className="analytics-card"><span>Toplam</span><strong>{analytics.summary.totalViews}</strong><small>{analytics.summary.totalVisitors} tahmini ziyaretçi</small></article>
         </div>
         {analytics.topPaths.length > 0 && <div className="analytics-paths"><h3>Son 30 günde en çok görüntülenen sayfalar</h3>{analytics.topPaths.map((item) => <div className="analytics-path" key={item.path}><span>{item.path}</span><strong>{item.views}</strong></div>)}</div>}
+        {analytics.topEvents.length > 0 && <div className="analytics-paths"><h3>Son 30 günde en çok kullanılan aksiyonlar</h3>{analytics.topEvents.map((item) => <div className="analytics-path" key={item.eventName}><span>{item.eventName}</span><strong>{item.events}</strong></div>)}</div>}
         <p className="analytics-note">Görüntüleme sayıları sunucu tarafında kaydedilir. Ziyaretçi sayıları, IP ve tarayıcı bilgisinin geri döndürülemez hash değerine dayalı yaklaşık benzersiz ziyaretçi sayısıdır.</p>
       </section>}
       {state === "error" && <p className="form-feedback error" role="alert">{message}</p>}
@@ -227,7 +249,9 @@ export function AdminPanel() {
             {rows.map((row) => (
               <article className="submission-card" key={row.id}>
                 <header className="submission-head"><div><h2>{row.full_name}</h2><p>{row.company || "Şirket bilgisi paylaşılmadı"} · {row.country}</p></div><time dateTime={row.submitted_at}>{new Intl.DateTimeFormat("tr-TR", { dateStyle: "medium", timeStyle: "short", timeZone: "Europe/Istanbul" }).format(new Date(row.submitted_at))}</time></header>
-                <div className="submission-contact"><a href={`mailto:${row.email}`}>{row.email}</a><a href={`tel:${row.phone.replace(/[^+\d]/g, "")}`}>{row.phone}</a></div>
+                <div className="submission-contact"><a href={`mailto:${row.email}`}>{row.email}</a>{row.phone && <a href={`tel:${row.phone.replace(/[^+\d]/g, "")}`}>{row.phone}</a>}</div>
+                <dl className="lead-details"><div><dt>Alıcı tipi</dt><dd>{row.buyer_type || "Belirtilmedi"}</dd></div><div><dt>Ürün ilgisi</dt><dd>{row.product_interest || "Belirtilmedi"}</dd></div><div><dt>Tahmini hacim</dt><dd>{row.estimated_volume || "Belirtilmedi"}</dd></div><div><dt>Ambalaj</dt><dd>{row.packaging_preference || "Belirtilmedi"}</dd></div></dl>
+                <label className="lead-status-field">Lead durumu<select value={row.lead_status || "new"} onChange={(event) => void updateLeadStatus(row.id, event.target.value)}>{leadStatuses.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
                 <p className="submission-message">{row.message}</p>
                 <details className="submission-tech"><summary>Teknik kayıt bilgileri</summary><dl><div><dt>IP adresi</dt><dd>{row.ip_address}</dd></div><div><dt>Tarayıcı / User-Agent</dt><dd>{row.user_agent}</dd></div></dl></details>
               </article>

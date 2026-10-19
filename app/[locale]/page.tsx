@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { BrandLockup } from "@/components/brand-lockup";
 import { ContactForm } from "@/components/contact-form";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { TrackableLink } from "@/components/trackable-link";
+import { buyerCopy } from "@/lib/buyer-copy";
 import { copy, isLocale, languageLabel, locales, type Locale } from "@/lib/copy";
 import { faqCopy } from "@/lib/faq-copy";
 import { imageAlt } from "@/lib/image-copy";
@@ -18,6 +20,7 @@ const localeTag: Record<Locale, string> = { en: "en_US", de: "de_DE", fr: "fr_FR
 const mainNavigationLabel: Record<Locale, string> = {
   en: "Main navigation", de: "Hauptnavigation", fr: "Navigation principale", it: "Navigazione principale", nl: "Hoofdnavigatie"
 };
+const whatsappHref = "https://wa.me/41783360425?text=Hello%2C%20I%20am%20interested%20in%20wholesale%20dried%20figs.";
 
 export const dynamicParams = false;
 export const dynamic = "force-dynamic";
@@ -61,6 +64,7 @@ export default async function LocalizedHome({ params }: PageProps) {
   if (!isLocale(value)) notFound();
   const locale = value as Locale;
   const text = copy[locale];
+  const buyer = buyerCopy[locale];
   await recordPageView(`/${locale}`);
   const contact = await getSiteSettings();
   const faq = faqCopy[locale];
@@ -133,8 +137,8 @@ export default async function LocalizedHome({ params }: PageProps) {
             <h1>{text.h1}</h1>
             <p className="hero-lede">{text.subheading}</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="#contact">{text.navCta}</a>
-              <a className="text-link" href="#contact">{text.sampleCta}</a>
+              <TrackableLink className="button button-dark" href="#contact" eventName="quote_click">{buyer.quoteCta}</TrackableLink>
+              <TrackableLink className="text-link" href="#contact" eventName="sample_click">{buyer.sampleCta}</TrackableLink>
             </div>
           </div>
           <div className="hero-visual">
@@ -154,6 +158,25 @@ export default async function LocalizedHome({ params }: PageProps) {
           </div>
         </section>
 
+        <section className="buyer-section section-wrap" id="buyers">
+          <div className="section-heading"><p className="eyebrow">{buyer.sectionLabel}</p><h2>{buyer.sectionTitle}</h2></div>
+          <p className="buyer-intro section-lede">{buyer.sectionIntro}</p>
+          <div className="buyer-card-grid">{buyer.supplyCards.map((card, index) => <article className="buyer-card" key={card.title}><span className="point-index">0{index + 1}</span><h3>{card.title}</h3><p>{card.text}</p></article>)}</div>
+          <div className="buyer-actions"><TrackableLink className="button button-dark" href="#contact" eventName="quote_click">{buyer.quoteCta}</TrackableLink><TrackableLink className="button button-outline" href="/downloads/orchard-to-global-buyer-brief.pdf" eventName="brochure_download" download>{buyer.brochureCta}</TrackableLink></div>
+        </section>
+
+        <section className="process-section">
+          <div className="process-inner section-wrap">
+            <div><p className="eyebrow eyebrow-light">{buyer.processLabel}</p><h2>{buyer.processTitle}</h2></div>
+            <div className="process-steps">{buyer.processSteps.map((step) => <article key={step.title}><h3>{step.title}</h3><p>{step.text}</p></article>)}</div>
+          </div>
+        </section>
+
+        <section className="market-section section-wrap">
+          <div><p className="eyebrow">{buyer.marketLabel}</p><h2>{buyer.marketTitle}</h2></div>
+          <div><p className="section-lede">{buyer.marketText}</p><TrackableLink className="text-link" href={whatsappHref} target="_blank" rel="noreferrer" eventName="whatsapp_click">{buyer.whatsappCta}</TrackableLink></div>
+        </section>
+
         <section className="documentation-section" id="documentation">
           <div className="documentation-inner section-wrap">
             <div className="documentation-heading"><p className="eyebrow eyebrow-light">02 / {text.docsLabel}</p><h2>{text.docsTitle}</h2></div>
@@ -166,8 +189,9 @@ export default async function LocalizedHome({ params }: PageProps) {
             <p className="eyebrow">03 / {text.navContact}</p><h2>{text.contactSection}</h2><p className="section-lede">{text.formIntro}</p>
             <div className="contact-details">
               <div className="contact-detail"><span className="detail-label">{text.locationsLabel}</span><p>{contact.contact_locations}</p></div>
-              <div className="contact-detail"><span className="detail-label">{text.emailLabel}</span><a href={`mailto:${contact.contact_email}`}>{contact.contact_email}</a></div>
+              <div className="contact-detail"><span className="detail-label">{text.emailLabel}</span><TrackableLink href={`mailto:${contact.contact_email}`} eventName="email_click">{contact.contact_email}</TrackableLink></div>
               <div className="contact-detail"><span className="detail-label">{text.phoneLabel}</span><a href={`tel:${contact.phone_primary.replace(/[^+\d]/g, "")}`}>{contact.phone_primary}</a><a href={`tel:${contact.phone_secondary.replace(/[^+\d]/g, "")}`}>{contact.phone_secondary}</a></div>
+              <TrackableLink className="contact-whatsapp" href={whatsappHref} target="_blank" rel="noreferrer" eventName="whatsapp_click">{buyer.whatsappCta}</TrackableLink>
             </div>
           </div>
           <div className="contact-form-panel"><div className="form-heading"><h3>{text.formTitle}</h3></div><ContactForm locale={locale} /></div>
@@ -180,6 +204,7 @@ export default async function LocalizedHome({ params }: PageProps) {
           <Link href={`/${locale}/about`}>{text.navAbout}</Link>
           <Link href={`/${locale}/faq`}>{faq.navLabel}</Link>
           <a href="#contact">{text.navContact}</a>
+          <Link href={`/${locale}/privacy`}>{buyer.privacyLink}</Link>
         </nav>
       </footer>
     </div>

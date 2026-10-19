@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS site_settings (
 
 INSERT INTO site_settings (setting_key, setting_value)
 VALUES
-  ('contact_email', 'hello@orchardtoglobal.com.tr'),
+  ('contact_email', 'info@orchardtoglobal.com'),
   ('phone_primary', '+41 78 336 04 25'),
   ('phone_secondary', '+90 536 847 6521'),
   ('contact_locations', 'Zurich · Istanbul · Aydın')

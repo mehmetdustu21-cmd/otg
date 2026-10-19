@@ -8,7 +8,7 @@ export type SiteSettings = {
 };
 
 export const defaultSiteSettings: SiteSettings = {
-  contact_email: "hello@orchardtoglobal.com.tr",
+  contact_email: "info@orchardtoglobal.com",
   phone_primary: "+41 78 336 04 25",
   phone_secondary: "+90 536 847 6521",
   contact_locations: "Zurich · Istanbul · Aydın"

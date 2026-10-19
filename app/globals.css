@@ -358,3 +358,77 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -.045e
 }
 
 .admin-load-more { margin-top: 20px; display: flex; justify-content: center; }
+
+/* Buyer conversion sections */
+.buyer-section { padding-block: 26px 104px; }
+.buyer-intro { max-width: 760px; margin: -12px 0 35px; }
+.buyer-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.buyer-card { min-height: 235px; padding: 25px 24px 29px; background: var(--paper); }
+.buyer-card h3 { margin: 28px 0 10px; color: var(--fig-deep); font-size: 27px; line-height: 1.08; }
+.buyer-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.buyer-actions { margin-top: 27px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.process-section { background: var(--fig-deep); color: white; }
+.process-inner { padding-block: 72px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; }
+.process-inner h2 { max-width: 560px; margin: 0; color: var(--cream); font-size: clamp(35px, 4.2vw, 55px); line-height: 1.06; }
+.process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
+.process-steps article { padding-top: 17px; border-top: 1px solid rgba(255,255,255,.3); }
+.process-steps h3 { margin: 0 0 11px; color: var(--cream); font-size: 21px; line-height: 1.18; }
+.process-steps p { margin: 0; color: rgba(255,255,255,.72); font-size: 12px; line-height: 1.75; }
+.market-section { padding-block: 82px; display: grid; grid-template-columns: 1fr .85fr; gap: 80px; border-bottom: 1px solid var(--line); }
+.market-section h2 { max-width: 610px; margin: 0; color: var(--fig-deep); font-size: clamp(36px, 4.2vw, 56px); line-height: 1.06; }
+.market-section .section-lede { max-width: 500px; margin-bottom: 24px; }
+.contact-whatsapp { display: inline-flex; margin-top: 14px; color: var(--olive) !important; font-size: 11px !important; font-weight: 700; }
+.whatsapp-button { position: fixed; z-index: 30; right: 23px; bottom: 22px; display: inline-flex; align-items: center; gap: 9px; padding: 10px 14px 10px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; background: var(--olive-dark); color: white; box-shadow: 0 10px 28px rgba(31,38,28,.2); font-size: 11px; font-weight: 700; }
+.whatsapp-button span { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; background: #d9e5cc; color: var(--olive-dark); font-size: 9px; font-weight: 800; }
+.whatsapp-button:hover { background: var(--fig); transform: translateY(-1px); }
+.privacy-page { min-height: 70vh; padding-block: 45px 105px; }
+.privacy-hero { max-width: 800px; padding-block: 50px 48px; }
+.privacy-hero h1 { max-width: 760px; margin: 0 0 18px; color: var(--fig-deep); font-size: clamp(42px, 5vw, 68px); line-height: 1.03; }
+.privacy-hero .section-lede { max-width: 650px; }
+.privacy-content { max-width: 880px; border-top: 1px solid var(--line); }
+.privacy-content section { padding: 25px 0; border-bottom: 1px solid var(--line); }
+.privacy-content h2 { margin: 0 0 8px; color: var(--fig-deep); font-size: clamp(23px, 2.4vw, 31px); }
+.privacy-content p { max-width: 760px; margin: 0; color: #5f5e56; font-size: 14px; line-height: 1.8; }
+
+@media (max-width: 760px) {
+  .buyer-section { padding-block: 25px 69px; }
+  .buyer-card-grid, .process-steps { grid-template-columns: 1fr; }
+  .buyer-card { min-height: 0; padding: 22px 19px 25px; }
+  .buyer-card h3 { margin-top: 22px; font-size: 25px; }
+  .buyer-actions { align-items: stretch; flex-direction: column; }
+  .buyer-actions .button { width: 100%; }
+  .process-inner, .market-section { padding-block: 55px; grid-template-columns: 1fr; gap: 30px; }
+  .process-inner h2, .market-section h2 { font-size: 39px; }
+  .process-steps { gap: 22px; }
+  .whatsapp-button { right: 13px; bottom: 13px; padding-right: 11px; }
+  .whatsapp-button span { width: 23px; height: 23px; }
+  .privacy-page { padding-block: 30px 75px; }
+  .privacy-hero { padding-block: 38px 28px; }
+  .privacy-hero h1 { font-size: clamp(38px, 10vw, 54px); }
+  .privacy-content p { font-size: 13px; }
+}
+
+.lead-details { margin: 16px 0 0; padding: 13px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; border-top: 1px solid var(--line); }
+.lead-details div { min-width: 0; }
+.lead-details dt { color: var(--muted); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.lead-details dd { margin: 3px 0 0; color: var(--fig-deep); font-size: 12px; font-weight: 700; overflow-wrap: anywhere; }
+@media (max-width: 760px) { .lead-details { grid-template-columns: 1fr 1fr; } }
+
+.market-page { min-height: 70vh; padding-block: 45px 105px; }
+.market-page-hero { max-width: 850px; padding-block: 70px 80px; }
+.market-page-hero h1 { max-width: 800px; margin: 0 0 22px; color: var(--fig-deep); font-size: clamp(45px, 6vw, 76px); line-height: 1; }
+.market-page-hero .section-lede { max-width: 700px; margin-bottom: 28px; }
+.market-page-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.market-page-grid article { min-height: 310px; padding: 31px 29px; background: var(--paper); }
+.market-page-grid h2 { margin: 0 0 15px; color: var(--fig-deep); font-size: clamp(28px, 3vw, 42px); line-height: 1.08; }
+.market-page-grid .section-lede { margin: 0; }
+@media (max-width: 760px) {
+  .market-page { padding-block: 30px 75px; }
+  .market-page-hero { padding-block: 48px 58px; }
+  .market-page-hero h1 { font-size: clamp(40px, 11vw, 58px); }
+  .market-page-grid { grid-template-columns: 1fr; }
+  .market-page-grid article { min-height: 0; padding: 25px 21px 29px; }
+}
+
+.lead-status-field { max-width: 260px; margin-top: 16px; display: flex; flex-direction: column; gap: 6px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.lead-status-field select { min-height: 38px; padding: 7px 9px; border: 1px solid #d7d0c4; background: var(--paper); color: var(--fig-deep); font-size: 12px; letter-spacing: 0; text-transform: none; }

@@ -1,0 +1,8 @@
+ALTER TABLE inquiries
+  ALTER COLUMN phone DROP NOT NULL;
+
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS buyer_type TEXT;
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS product_interest TEXT;
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS estimated_volume TEXT;
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS packaging_preference TEXT;
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS locale TEXT;

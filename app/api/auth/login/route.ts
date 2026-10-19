@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ADMIN_COOKIE, adminCookieOptions, createAdminSessionToken, credentialsMatch, hasSameOrigin } from "@/lib/admin-auth";
+import { rateLimit, requestAddress } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
+  const limit = rateLimit(`login:${requestAddress(request)}`, 8, 15 * 60_000);
+  if (!limit.allowed) {
+    return NextResponse.json({ error: "Çok fazla giriş denemesi. Lütfen daha sonra tekrar deneyin." }, { status: 429, headers: { "Cache-Control": "no-store", "Retry-After": String(limit.retryAfter) } });
+  }
   if (!hasSameOrigin(request)) {
     return NextResponse.json({ error: "Geçersiz istek kaynağı." }, { status: 403, headers: { "Cache-Control": "no-store" } });
   }

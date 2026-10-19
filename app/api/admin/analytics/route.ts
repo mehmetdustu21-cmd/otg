@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const sql = getDb();
-    const [summaryRows, pathRows] = await Promise.all([
+    const [summaryRows, pathRows, eventRows] = await Promise.all([
       sql`
         SELECT
           COUNT(*) FILTER (WHERE visited_at >= date_trunc('day', NOW() AT TIME ZONE 'Europe/Istanbul') AT TIME ZONE 'Europe/Istanbul')::int AS today_views,
@@ -34,6 +34,14 @@ export async function GET(request: NextRequest) {
         GROUP BY path
         ORDER BY views DESC
         LIMIT 10
+      `,
+      sql`
+        SELECT event_name, COUNT(*)::int AS events
+        FROM site_events
+        WHERE created_at >= NOW() - INTERVAL '30 days'
+        GROUP BY event_name
+        ORDER BY events DESC
+        LIMIT 10
       `
     ]);
 
@@ -49,7 +57,8 @@ export async function GET(request: NextRequest) {
         monthVisitors: Number(summary.month_visitors || 0),
         totalVisitors: Number(summary.total_visitors || 0)
       },
-      topPaths: pathRows.map((row) => ({ path: row.path, views: Number(row.views) }))
+      topPaths: pathRows.map((row) => ({ path: row.path, views: Number(row.views) })),
+      topEvents: eventRows.map((row) => ({ eventName: row.event_name, events: Number(row.events) }))
     }, { headers });
   } catch {
     return NextResponse.json(
