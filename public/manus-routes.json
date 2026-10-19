@@ -1,0 +1,1 @@
+{"routes":[{"path":"/","title":"Home"},{"path":"/en","title":"Home"},{"path":"/de","title":"Home"},{"path":"/fr","title":"Home"},{"path":"/it","title":"Home"},{"path":"/nl","title":"Home"},{"path":"/:locale/about","title":"About us"},{"path":"/:locale/faq","title":"FAQ"}]}
